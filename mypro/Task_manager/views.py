@@ -26,7 +26,7 @@ def index(request):
 
 def add(request):
     TaskEntryFormSet = modelformset_factory(TaskEntry, fields=(
-    'Task_id', 'Task_des', 'Task_priority', 'Task_weight', 'Task_dependant', 'Task_schedule'), can_delete=True)
+    'Task_id', 'Task_des', 'Task_priority', 'Task_weight', 'Task_dependant', 'Task_schedule'), can_delete=True,error_messages="Error in submission")
 
     if request.method == 'POST':
         formset = TaskEntryFormSet(request.POST, request.FILES)
@@ -39,15 +39,3 @@ def add(request):
 
     return render(request, 'add.html', {'formset': formset})
 
-
-def edit(request):
-    TaskEntryFormSet = modelformset_factory(TaskEntry, fields=(
-    'Task_id', 'Task_des', 'Task_priority', 'Task_weight', 'Task_dependant', 'Task_schedule'))
-    if request.method == 'POST':
-        formset = TaskEntryFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            formset.save()
-            # do something.
-    else:
-        formset = TaskEntryFormSet()
-    return render(request, 'edit.html')
