@@ -1,0 +1,3 @@
+{% macro list(name,style='') -%}
+    <li style="{{style}}">{{ i.{{ name }}.Task_id }} {{ i.{{ name }}.Task_des }} {{ i.{{ name }}.Task_priority }} {{ i.{{ name }}.Task_weight }} {{ i.{{ name }}.Task_dependant }} {{ i.{{ name }}.Task_schedule }} <a href="#">Edit</a> <a href="#">Delete</a></li>
+{%- endmacro %}

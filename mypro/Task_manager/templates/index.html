@@ -1,0 +1,28 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Task Manager</title>
+    <style>
+        li{
+            display:block;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% if task_list %}
+    <ul>
+        {% for i in task_list %}
+            {% if i.main %}
+                <li style="margin:5px;">{{ i.main.Task_id }} {{ i.main.Task_des }} {{ i.main.Task_priority }} {{ i.main.Task_weight }} {{ i.main.Task_dependant }} {{ i.main.Task_schedule }} <a href="#">Edit</a> <a href="#">Delete</a></li>
+            {% else %}
+                <li style="">{{ i.sub.Task_id }} {{ i.sub.Task_des }} {{ i.sub.Task_priority }} {{ i.sub.Task_weight }} {{ i.sub.Task_dependant }} {{ i.sub.Task_schedule }} <a href="#">Edit</a> <a href="#">Delete</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No Tasks are available.</p>
+    {% endif %}
+</body>
+</html>
