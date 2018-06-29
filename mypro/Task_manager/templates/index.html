@@ -2,9 +2,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Task Manager</title>
-    {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="<% static 'css/bootstrap.min.css' %>">
-
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'file/css/bootstrap.min.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         li{
             display:block;
@@ -13,19 +15,67 @@
 </head>
 
 <body>
+<div class="container-fluid">
+  <div class="jumbotron" style="background-color:#d9edf7">
+    <h1>Task list</h1>
+  </div>
+</div>
+<div class="container">
+  <ul class="list-inline">
 
-    {% if task_list %}
-    <ul>
+  </ul>
+</div>
+
+<div class="container-fluid">
+
+    <table class="table">
+        <thead>
+        <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Priority</th>
+                <th>Weight</th>
+                <th>Dependent</th>
+                <th>Scheduled week</th>
+                <!--<th>Delete</th>-->
+                <th></th>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% if task_list %}
         {% for i in task_list %}
             {% if i.main %}
-                <li style="margin:5px;">{{ i.main.Task_id }} {{ i.main.Task_des }} {{ i.main.Task_priority }} {{ i.main.Task_weight }} {{ i.main.Task_dependant }} {{ i.main.Task_schedule }} <a href="#">Edit</a> <a href="#">Delete</a></li>
+
+            <tr><td>{{ i.main.Task_id }}</td>
+                <td>{{ i.main.Task_des }}</td>
+                <td>{{ i.main.Task_priority }}</td>
+                <td>{{ i.main.Task_weight }}</td>
+                <td>{{ i.main.Task_dependant }}</td>
+                <td>{{ i.main.Task_schedule }}</td>
+                <!--<td><a href="#">Edit</a> <a href="#">Delete</a></li></td>-->
+            </tr>
+
             {% else %}
-                <li style="">{{ i.sub.Task_id }} {{ i.sub.Task_des }} {{ i.sub.Task_priority }} {{ i.sub.Task_weight }} {{ i.sub.Task_dependant }} {{ i.sub.Task_schedule }} <a href="#">Edit</a> <a href="#">Delete</a></li>
+                <tr style="background-color:#d9edf7" class="success">
+                    <td>{{ i.sub.Task_id }}</td>
+                    <td>{{ i.sub.Task_des }}</td>
+                    <td>{{ i.sub.Task_priority }}</td>
+                    <td>{{ i.sub.Task_weight }}</td>
+                    <td>{{ i.sub.Task_dependant }}</td>
+                    <td>{{ i.sub.Task_schedule }}</td>
+                    <!--<td><a href="#">Edit</a> <a href="#">Delete</a></li></ul></td>-->
+                </tr>
             {% endif %}
         {% endfor %}
-    </ul>
-    {% else %}
-    <p>No Tasks are available.</p>
-    {% endif %}
+        {% else %}
+        <p>No Tasks are available.</p>
+        {% endif %}
+        </tbody>
+</table>
+</div>
+
 </body>
+
+
 </html>
