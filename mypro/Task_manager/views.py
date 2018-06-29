@@ -1,4 +1,4 @@
-from django.forms import modelformset_factory, forms
+from django.forms import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -41,6 +41,14 @@ def index(request):
         print(i)
 
     return render(request, 'index.html', context={'task_list': all_task_list})
+
+
+
+
+
+
+
+
 
 
 # def add_a_task(request):
